@@ -32,10 +32,25 @@ type Company{
  type Query{
   viewCompanies: [Company!]!
   viewCompanyById(Cid: ID!): Company!
+  ViewJobByCid(cid:ID!):[Job!]!
+  ViewAllJobs:[Job!]!
 }
-
+type Job{
+  id:ID!
+  cid:String!
+  jobname:String!
+  salary:String!
+  noticeperiod:String!
+}
+ input NewJob{
+  cid:String!
+  jobname:String!
+  salary:String!
+  noticeperiod:String!
+ }
 
 type Mutation{
   createSignup(input:NewUser!): User!
   createCompany(input:NewCompany!):Company!
+  createJob(input:NewJob!):Job!
 }

@@ -8,9 +8,12 @@ import (
 
 type UserService interface {
 	UserSignup(model.NewUser) (*model.User, error)
-	UserCompany(model.NewCompany)(*model.Company,error)
-	GetCompanies()([]*model.Company,error)
-	GetCompanyById(Id string)(*model.Company,error)
+	UserCompany(model.NewCompany) (*model.Company, error)
+	GetCompanies() ([]*model.Company, error)
+	GetCompanyById(Id string) (*model.Company, error)
+	UserJob(model.NewJob) (*model.Job, error)
+	GetAllJobs() ([]*model.Job, error)
+	GetJobByCid(cid string) ([]*model.Job, error)
 }
 type Service struct {
 	userRepo repository.UserRepo
@@ -24,4 +27,3 @@ func NewService(userRepo repository.UserRepo) (UserService, error) {
 		userRepo: userRepo,
 	}, nil
 }
-

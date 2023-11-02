@@ -20,7 +20,11 @@ func Open() (*gorm.DB, error) {
 		return nil, fmt.Errorf("auto migration failed: %w ", err)
 	}
 
-	err = db.Migrator().AutoMigrate(&models.Company{})
+	err = db.Migrator().DropTable(&models.Job{})
+	if err != nil {
+		return nil, fmt.Errorf("table not droped %w", err)
+	}
+	err = db.Migrator().AutoMigrate(&models.Company{}, &models.Job{})
 	if err != nil {
 		return nil, fmt.Errorf("auto migration failed: %w ", err)
 	}
